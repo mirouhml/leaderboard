@@ -1,0 +1,45 @@
+/* stylelint-disable no-descending-specificity */
+.main-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.recent-scores-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  h2 {
+    padding: 0;
+  }
+
+  button {
+    padding: 7px;
+  }
+}
+
+.recent-scores-list {
+  list-style-type: none;
+  padding: 0;
+  border: 2px solid black;
+  min-height: 40px;
+
+  li {
+    padding: 10px;
+  }
+
+  li:nth-child(even) {
+    background-color: #ddd;
+  }
+}
+
+.add-score {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    width: fit-content;
+    justify-self: flex-end;
+  }
+}
