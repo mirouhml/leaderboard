@@ -19,5 +19,7 @@ add.addEventListener('click', () => {
     name: name.value,
     score: score.value,
   };
+  name.value = '';
+  score.value = '';
   leaderboard.add(scoreItem);
 });
