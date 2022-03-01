@@ -9,22 +9,22 @@ export default class Leaderboard {
     localStorage.setItem('scores', JSON.stringify(this.list));
   }
 
-  add(score){
+  add(score) {
     this.list.push(score);
     this.populateStorage();
   }
 
-  getScores(){
+  getScores() {
     return this.list;
   }
 
-  display(){
+  display() {
     const container = document.querySelector('.recent-scores-list');
     container.innerHTML = '';
-    this.list.forEach((score,i) => {
+    this.list.forEach((score, i) => {
       const listItem = document.createElement('li');
-      listItem.setAttribute('id','score'+i);
-      listItem.innerHTML = score.name + ': ' + score.score;
+      listItem.setAttribute('id', `score${i}`);
+      listItem.innerHTML = `${score.name}: ${score.score}`;
       container.appendChild(listItem);
     });
   }
