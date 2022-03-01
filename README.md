@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://mirouhml.github.io/To-Do-list)
+[Live Demo Link](https://mirouhml.github.io/leaderboard/)
 
 ### Features implemented so far are:
 
@@ -31,7 +31,7 @@ The basic requirements for building the executable are:
 #### Cloning the project
 
 ```
-git clone  https://github.com/mirouhml/To-Do-list <Your-Build-Directory>
+git clone  https://github.com/mirouhml/leaderboard <Your-Build-Directory>
 ```
 
 ## Getting packages installed
