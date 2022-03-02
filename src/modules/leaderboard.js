@@ -8,14 +8,12 @@ export default class Leaderboard {
   }
 
   add(score) {
-    const myPromise = new Promise((resolve,reject) => {
+    const myPromise = new Promise((resolve, reject) => {
       const data = this.apiHandler.addScore(score);
-      if (data){
+      if (data) {
         resolve(data);
-        console.log('resolve');
-      }
-      else reject();
-    })
+      } else reject();
+    });
     myPromise.then(
       (value) => {
         this.status.innerHTML = value.result;
@@ -25,22 +23,21 @@ export default class Leaderboard {
         const error = 'An error occurred while creating score, please try again shortly.';
         this.status.innerHTML = error;
         this.status.className = 'red';
-      }
-    )
+      },
+    );
   }
 
   getScores() {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve) => {
       const data = this.apiHandler.getScores();
       resolve(data);
-    })
+    });
     promise.then(
       (value) => {
         this.list = value.result;
-        console.log(this.list);
         this.display();
-      }
-    )
+      },
+    );
   }
 
   display() {
