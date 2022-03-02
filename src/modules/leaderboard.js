@@ -21,11 +21,13 @@ export default class Leaderboard {
       (value) => {
         this.status.innerHTML = value.result;
         this.status.className = 'green';
+        setInterval(() => { this.status.innerHTML = ''; }, 2000);
       },
       () => {
         const error = 'An error occurred while creating score, please try again shortly.';
         this.status.innerHTML = error;
         this.status.className = 'red';
+        setInterval(() => { this.status.innerHTML = ''; }, 2000);
       },
     );
   }
