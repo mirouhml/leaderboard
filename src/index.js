@@ -21,7 +21,7 @@ add.addEventListener('click', () => {
     const status = document.querySelector('#status');
     status.innerHTML = 'Please fill both fields before submitting.';
     status.className = 'red';
-    setTimeout(() => {status.innerHTML = '';}, 2400);
+    setTimeout(() => { status.innerHTML = ''; }, 2400);
   } else {
     leaderboard.add(scoreItem);
   }
