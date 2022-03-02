@@ -11,28 +11,32 @@ export default class Leaderboard {
   }
 
   add(score) {
-    const myPromise = new Promise((resolve, reject) => {
-      const data = this.apiHandler.addScore(score);
-      if (data) {
-        resolve(data);
-      } else reject();
-    });
-    myPromise.then(
+    const loader = document.getElementById('submit-loader');
+    loader.classList.add('loader-active');
+    this.apiHandler.addScore(score).then(
       (value) => {
         this.status.innerHTML = value.result;
         this.status.className = 'green';
-        setInterval(() => { this.status.innerHTML = ''; }, 2000);
+        setTimeout(() => { this.status.innerHTML = ''; }, 2400);
+        loader.classList.remove('loader-active');
+        const name = document.querySelector('#name');
+        const score = document.querySelector('#score');
+        name.value = '';
+        score.value = '';
       },
       () => {
         const error = 'An error occurred while creating score, please try again shortly.';
         this.status.innerHTML = error;
         this.status.className = 'red';
-        setInterval(() => { this.status.innerHTML = ''; }, 2000);
+        setTimeout(() => { this.status.innerHTML = ''; }, 2400);
+        loader.classList.remove('loader-active');
       },
     );
   }
 
   getScores() {
+    const loader = document.getElementById('list-loader');
+    loader.classList.add('loader-active');
     const promise = new Promise((resolve) => {
       const data = this.apiHandler.getScores();
       resolve(data);
@@ -41,6 +45,7 @@ export default class Leaderboard {
       (value) => {
         this.list = value.result;
         this.display();
+        loader.classList.remove('loader-active');
       },
     );
   }
