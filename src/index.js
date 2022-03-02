@@ -16,7 +16,15 @@ add.addEventListener('click', () => {
     name: name.value,
     score: score.value,
   };
-  name.value = '';
-  score.value = '';
-  leaderboard.add(scoreItem);
+
+  if (name.value === '' && score.value === '') {
+    const status = document.querySelector('#status');
+    status.innerHTML = 'Please fill both fields before submitting';
+    status.className = 'red';
+    setInterval(() => { status.innerHTML = ''; }, 2000);
+  } else {
+    leaderboard.add(scoreItem);
+    name.value = '';
+    score.value = '';
+  }
 });

@@ -1,16 +1,38 @@
 /* stylelint-disable no-descending-specificity */
+$main-color: #1e961e;
+$secondary-color: #295e29;
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html {
+  height: 100%;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  background-color: rgb(204, 204, 204);
+}
+
+.main-container {
+  display: block;
+  background-color: white;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 3px 10px 0 #8f8d8c73;
+  height: 70%;
 }
 
 h1 {
   text-align: center;
+  color: $main-color;
 }
 
-.main-container {
+.container {
   display: flex;
   justify-content: space-evenly;
 }
@@ -28,27 +50,25 @@ h1 {
     padding: 0;
     flex-grow: 1;
   }
-
-  button {
-    padding: 7px;
-  }
 }
 
 .recent-scores-list {
   list-style-type: none;
   padding: 0;
-  border: 2px solid black;
+  border: 3px solid $main-color;
+  border-radius: 5px;
   min-height: 40px;
-  max-height: 390px;
+  max-height: 278px;
   overflow-y: scroll;
 
   li {
     padding: 10px;
+    border-bottom: 1px solid $main-color;
   }
 
-  li:nth-child(even) {
-    background-color: #ddd;
-  }
+  li:last-child {
+    border-bottom: 0;
+  } 
 }
 
 .add-score {
@@ -66,10 +86,17 @@ h1 {
   }
 
   button {
-    width: fit-content;
-    align-self: center;
     padding: 10px;
   }
+}
+
+.bottom-part {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
 }
 
 small {
@@ -82,4 +109,47 @@ small {
 
 .red {
   color: red;
+}
+
+button {
+  padding: 10px;
+  background-color: $main-color;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+}
+
+button:active {
+  background-color: $secondary-color;
+}
+
+input:focus {
+  border:2px solid $main-color;
+  outline: none !important;
+  border-radius: 2px;
+}
+
+.vertical-line {
+  border-left: 2px solid $main-color;
+}
+
+.loader {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 2s linear infinite;
+}
+
+.loader-active {
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid $main-color; /* Blue */
+}
+
+.loader-unactive {
+  border: 3px solid #fff; /* Light grey */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
