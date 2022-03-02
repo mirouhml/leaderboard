@@ -37,6 +37,8 @@ export default class Leaderboard {
   }
 
   getScores() {
+    const loader = document.getElementById('list-loader');
+    loader.classList.add('loader-active');
     const promise = new Promise((resolve) => {
       const data = this.apiHandler.getScores();
       resolve(data);
@@ -45,6 +47,7 @@ export default class Leaderboard {
       (value) => {
         this.list = value.result;
         this.display();
+        loader.classList.remove('loader-active');
       },
     );
   }
