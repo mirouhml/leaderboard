@@ -3,6 +3,9 @@ import ApiHandler from './apiHandler.js';
 export default class Leaderboard {
   constructor() {
     this.apiHandler = new ApiHandler();
+    if (localStorage.getItem('game')) {
+      this.getScores();
+    }
     this.list = [];
     this.status = document.getElementById('status');
   }
