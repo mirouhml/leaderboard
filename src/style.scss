@@ -39,6 +39,8 @@ h1 {
 
 .recent-scores {
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .recent-scores-header {
@@ -123,21 +125,27 @@ button:active {
   background-color: $secondary-color;
 }
 
-input:focus {
-  border:2px solid $main-color;
+input {
+  border:2px solid rgb(192, 192, 192);
   outline: none !important;
   border-radius: 2px;
 }
 
+input:focus {
+  border:2px solid $main-color;
+}
+
 .vertical-line {
   border-left: 2px solid $main-color;
+  height: 400px;
 }
 
 .loader {
   border-radius: 50%;
   width: 25px;
   height: 25px;
-  animation: spin 2s linear infinite;
+  animation: spin 0.5s linear infinite;
+  align-self: center;
 }
 
 .loader-active {
@@ -152,4 +160,29 @@ input:focus {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  .main-container {
+    height: auto;
+  }
+
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    min-width: 20px;
+  }
+  
+  .recent-scores, .add-score {
+    min-width: 0;
+  }
+
+  .vertical-line {
+    border: 0;
+    border-bottom: 2px solid $main-color;
+    height: auto;
+    margin: 10px 0;
+  }
 }
