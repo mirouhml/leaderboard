@@ -11,26 +11,27 @@ export default class Leaderboard {
   }
 
   add(score) {
+    console.log('here');
     const loader = document.getElementById('submit-loader');
     loader.classList.add('loader-active');
-    const myPromise = new Promise((resolve, reject) => {
-      const data = this.apiHandler.addScore(score);
-      if (data) {
-        resolve(data);
-      } else reject();
-    });
-    myPromise.then(
+    this.apiHandler.addScore(score).then(
       (value) => {
+        console.log(value);
         this.status.innerHTML = value.result;
         this.status.className = 'green';
-        setInterval(() => { this.status.innerHTML = ''; }, 2000);
+        setTimeout(() => {this.status.innerHTML = '';}, 2400);
         loader.classList.remove('loader-active');
+        const name = document.querySelector('#name');
+        const score = document.querySelector('#score');
+        name.value = '';
+        score.value = '';
       },
       () => {
+        console.log('here');
         const error = 'An error occurred while creating score, please try again shortly.';
         this.status.innerHTML = error;
         this.status.className = 'red';
-        setInterval(() => { this.status.innerHTML = ''; }, 2000);
+        setTimeout(() => {this.status.innerHTML = '';}, 2400);
         loader.classList.remove('loader-active');
       },
     );
