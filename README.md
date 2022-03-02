@@ -8,8 +8,6 @@
 
 [Live Demo Link](https://mirouhml.github.io/leaderboard/)
 
-### Features implemented so far are:
-
 ## Built With
 
 - Webhint
