@@ -1,21 +1,46 @@
+import ApiHandler from './apiHandler.js';
+
 export default class Leaderboard {
   constructor() {
-    if (localStorage.getItem('scores')) {
-      this.list = JSON.parse(localStorage.getItem('scores'));
-    } else this.list = [];
-  }
-
-  populateStorage() {
-    localStorage.setItem('scores', JSON.stringify(this.list));
+    this.apiHandler = new ApiHandler();
+    this.list = [];
+    this.status = document.getElementById('status');
   }
 
   add(score) {
-    this.list.push(score);
-    this.populateStorage();
+    const myPromise = new Promise((resolve,reject) => {
+      const data = this.apiHandler.addScore(score);
+      if (data){
+        resolve(data);
+        console.log('resolve');
+      }
+      else reject();
+    })
+    myPromise.then(
+      (value) => {
+        this.status.innerHTML = value.result;
+        this.status.className = 'green';
+      },
+      () => {
+        const error = 'An error occurred while creating score, please try again shortly.';
+        this.status.innerHTML = error;
+        this.status.className = 'red';
+      }
+    )
   }
 
   getScores() {
-    return this.list;
+    const promise = new Promise((resolve, reject) => {
+      const data = this.apiHandler.getScores();
+      resolve(data);
+    })
+    promise.then(
+      (value) => {
+        this.list = value.result;
+        console.log(this.list);
+        this.display();
+      }
+    )
   }
 
   display() {
@@ -24,7 +49,7 @@ export default class Leaderboard {
     this.list.forEach((score, i) => {
       const listItem = document.createElement('li');
       listItem.setAttribute('id', `score${i}`);
-      listItem.innerHTML = `${score.name}: ${score.score}`;
+      listItem.innerHTML = `${score.user}: ${score.score}`;
       container.appendChild(listItem);
     });
   }

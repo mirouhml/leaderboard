@@ -3,13 +3,13 @@ import Leaderboard from './modules/leaderboard.js';
 
 const leaderboard = new Leaderboard();
 
-leaderboard.display();
+leaderboard.getScores();
 
 const refresh = document.querySelector('#refresh');
 const add = document.querySelector('#submit');
 
 refresh.addEventListener('click', () => {
-  leaderboard.display();
+  leaderboard.getScores();
 });
 
 add.addEventListener('click', () => {
