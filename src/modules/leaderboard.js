@@ -7,17 +7,17 @@ export default class Leaderboard {
       this.getScores();
     }
     this.list = [];
-    this.status = document.getElementById('status');
   }
 
   add(score) {
+    const status = document.getElementById('status');
     const loader = document.getElementById('submit-loader');
     loader.classList.add('loader-active');
     this.apiHandler.addScore(score).then(
       (value) => {
-        this.status.innerHTML = value.result;
-        this.status.className = 'green';
-        setTimeout(() => { this.status.innerHTML = ''; }, 2400);
+        status.innerHTML = value.result;
+        status.className = 'green';
+        setTimeout(() => { status.innerHTML = ''; }, 2400);
         loader.classList.remove('loader-active');
         const name = document.querySelector('#name');
         const score = document.querySelector('#score');
@@ -26,9 +26,9 @@ export default class Leaderboard {
       },
       () => {
         const error = 'An error occurred while creating score, please try again shortly.';
-        this.status.innerHTML = error;
-        this.status.className = 'red';
-        setTimeout(() => { this.status.innerHTML = ''; }, 2400);
+        status.innerHTML = error;
+        status.className = 'red';
+        setTimeout(() => { status.innerHTML = ''; }, 2400);
         loader.classList.remove('loader-active');
       },
     );
