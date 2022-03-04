@@ -2,7 +2,7 @@ import ApiHandler from './apiHandler.js';
 
 export default class Leaderboard extends ApiHandler {
   constructor() {
-   super();
+    super();
     if (localStorage.getItem('game')) {
       this.getScoresList();
     }
@@ -42,7 +42,7 @@ export default class Leaderboard extends ApiHandler {
       this.list = scores.result;
       this.display();
       loader.classList.remove('loader-active');
-    })
+    });
   }
 
   display() {
