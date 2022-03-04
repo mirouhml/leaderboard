@@ -6,7 +6,7 @@ const refresh = document.querySelector('#refresh');
 const add = document.querySelector('#submit');
 
 refresh.addEventListener('click', () => {
-  leaderboard.getScores();
+  leaderboard.getScoresList();
 });
 
 add.addEventListener('click', () => {

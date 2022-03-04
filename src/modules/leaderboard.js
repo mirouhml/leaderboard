@@ -1,10 +1,10 @@
 import ApiHandler from './apiHandler.js';
 
-export default class Leaderboard {
+export default class Leaderboard extends ApiHandler {
   constructor() {
-    this.apiHandler = new ApiHandler();
+   super();
     if (localStorage.getItem('game')) {
-      this.getScores();
+      this.getScoresList();
     }
     this.list = [];
   }
@@ -13,7 +13,7 @@ export default class Leaderboard {
     const status = document.getElementById('status');
     const loader = document.getElementById('submit-loader');
     loader.classList.add('loader-active');
-    this.apiHandler.addScore(score).then(
+    this.addScore(score).then(
       (value) => {
         status.innerHTML = value.result;
         status.className = 'green';
@@ -34,20 +34,15 @@ export default class Leaderboard {
     );
   }
 
-  getScores() {
+  getScoresList() {
     const loader = document.getElementById('list-loader');
     loader.classList.add('loader-active');
-    const promise = new Promise((resolve) => {
-      const data = this.apiHandler.getScores();
-      resolve(data);
-    });
-    promise.then(
-      (value) => {
-        this.list = value.result;
-        this.display();
-        loader.classList.remove('loader-active');
-      },
-    );
+    const data = this.getScores();
+    data.then((scores) => {
+      this.list = scores.result;
+      this.display();
+      loader.classList.remove('loader-active');
+    })
   }
 
   display() {
